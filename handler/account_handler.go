@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"login-system-sederhana/dto"
 	"login-system-sederhana/service"
+	"login-system-sederhana/utils"
 )
 
 type AccountHandler struct {
@@ -22,7 +23,7 @@ func (accounthandler *AccountHandler) Register(req dto.RegisterUser) error {
 	_, err := accounthandler.Accountservice.Register(req)
 
 	if err != nil {
-		fmt.Println("Register Gagal:", err)
+		fmt.Printf("%sRegistrasi Gagal: %s%s\n", utils.Red, err, utils.Reset)
 		return err
 	}
 
@@ -32,12 +33,12 @@ func (accounthandler *AccountHandler) Register(req dto.RegisterUser) error {
 
 // method login
 func(accounthandler *AccountHandler) Login(req dto.LoginUser) error {
-	_, err := accounthandler.Accountservice.Login(req)
+	account, err := accounthandler.Accountservice.Login(req)
 
 	if err != nil {
-		fmt.Println("Login Gagal:", err)
+		fmt.Printf("%sLogin Gagal: %s%s\n", utils.Red, err, utils.Reset)
 		return err
 	}
-
+	fmt.Printf("%sLogin%s berhasil, selamat datang %s\n", utils.Blue, utils.Reset, account.Name)
 	return nil
 }

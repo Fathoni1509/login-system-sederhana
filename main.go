@@ -6,6 +6,7 @@ import (
 	"login-system-sederhana/dto"
 	"login-system-sederhana/handler"
 	"login-system-sederhana/service"
+	"login-system-sederhana/utils"
 	"os"
 )
 
@@ -21,17 +22,18 @@ func main() {
 	run := true
 
 	for run {
-		fmt.Println("======== SIMPLE LOGIN SYSTEM ========")
-		fmt.Println("1. Register")
-		fmt.Println("2. Login")
-		fmt.Println("3. Keluar")
-		fmt.Print("Pilih menu: ")
+		fmt.Printf("\n======== SIMPLE %sLOGIN SYSTEM ========%s\n", utils.Blue, utils.Reset)
+		fmt.Printf("%s1.%s Register\n", utils.Red, utils.Reset)
+		fmt.Printf("%s2.%s Login%s\n", utils.Red, utils.Blue, utils.Reset)
+		fmt.Printf("%s3.%s Keluar%s\n", utils.Red, utils.Blue, utils.Reset)
+		fmt.Printf("Pilih menu: %s", utils.Red)
 		fmt.Scanln(&menu)
+		fmt.Printf("%s", utils.Reset)
 	
 		switch menu {
 		case 1:
-			fmt.Printf("\n--- Register ---\n")
-			fmt.Printf("Full Name\t: ")
+			fmt.Printf("\n%s--- Register ---\n", utils.Gray)
+			fmt.Printf("%sFull %sName%s\t: ", utils.Blue, utils.Red, utils.Reset)
 			scanner.Scan()
 			name = scanner.Text()
 	
@@ -39,11 +41,11 @@ func main() {
 			scanner.Scan()
 			email = scanner.Text()
 	
-			fmt.Printf("Phone\t\t: ")
+			fmt.Printf("Phone\t\t: %s", utils.Red)
 			scanner.Scan()
 			phone = scanner.Text()
 	
-			fmt.Printf("Password\t: ")
+			fmt.Printf("%sPassword%s\t: ", utils.Blue, utils.Reset)
 			scanner.Scan()
 			password = scanner.Text()
 	
@@ -57,13 +59,13 @@ func main() {
 			handler.Register(requestRegister)
 	
 		case 2:
-			fmt.Printf("\n--- Login ---\n")
+			fmt.Printf("\n%s--- Login ---%s\n", utils.Gray, utils.Reset)
 	
 			fmt.Printf("Email\t\t: ")
 			scanner.Scan()
 			email = scanner.Text()
 	
-			fmt.Printf("Password\t: ")
+			fmt.Printf("%sPassword%s\t: ", utils.Blue, utils.Reset)
 			scanner.Scan()
 			password = scanner.Text()
 	
@@ -74,10 +76,10 @@ func main() {
 			handler.Login(requestLogin)
 	
 		case 3:
-			fmt.Printf("\n~ Terima kasih telah menggunakan program kami ~\n")
+			fmt.Printf("\n%s~ Terima kasih telah menggunakan program kami ~%s\n", utils.Yellow, utils.Reset)
 			run = false
 		default:
-			fmt.Printf("\n!!! Input menu tidak valid !!!\n")
+			fmt.Printf("\n%s!!! Input menu tidak valid !!!%s\n", utils.Red, utils.Reset)
 		}
 	}
 

@@ -2,7 +2,6 @@ package service
 
 import (
 	"errors"
-	"fmt"
 	"login-system-sederhana/dto"
 	"login-system-sederhana/model"
 	"login-system-sederhana/utils"
@@ -33,7 +32,7 @@ func (accountservice *AccountService) Register(req dto.RegisterUser) (model.Acco
 
 	// validasi nama
 	if strings.TrimSpace(req.Name) == "" || !validName {
-		return model.Account{}, errors.New("name invalid")
+		return model.Account{}, errors.New("nama tidak valid")
 	}
 
 	// pola email
@@ -43,13 +42,13 @@ func (accountservice *AccountService) Register(req dto.RegisterUser) (model.Acco
 
 	// validasi email
 	if strings.TrimSpace(req.Email) == "" || !validEmail {
-		return model.Account{}, errors.New("email invalid")
+		return model.Account{}, errors.New("email tidak valid")
 	}
 
 	// Cek email duplikat
 	for _, a := range accounts {
 		if a.Email == req.Email {
-			return model.Account{}, errors.New("email already registered")
+			return model.Account{}, errors.New("email sudah terdaftar")
 		}
 	}
 
@@ -60,12 +59,12 @@ func (accountservice *AccountService) Register(req dto.RegisterUser) (model.Acco
 
 	// validasi phone number
 	if strings.TrimSpace(req.Phone) == "" || !validPhone || len(req.Phone) < 10 || len(req.Phone) > 15 {
-		return model.Account{}, errors.New("phone number invalid")
+		return model.Account{}, errors.New("nomor telepon tidak valid")
 	}
 
 	// validasi password
 	if strings.TrimSpace(req.Password) == "" || len(req.Password) < 6 {
-		return model.Account{}, errors.New("password invalid")
+		return model.Account{}, errors.New("password minimal 6 karakter")
 	}
 
 	newAccount := model.Account {
@@ -96,9 +95,8 @@ func (accountservice *AccountService) Login(req dto.LoginUser) (model.Account, e
 
 	for _, a := range accounts {
 		if a.Email == req.Email && a.Password == req.Password {
-			fmt.Println("Login berhasil, selamat datang", a.Name)
-			return model.Account{}, nil
+			return a, nil
 		}
 	}
-	return model.Account{}, errors.New("Login gagal")
+	return model.Account{}, errors.New("email atau password anda salah")
 }

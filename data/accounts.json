@@ -2,13 +2,13 @@
   {
     "name": "habibi fathoni",
     "email": "habibi@gmail.com",
-    "phone": "085743840940",
+    "phone": "085233840280",
     "password": "habibi"
   },
   {
     "name": "habibi fathoni",
     "email": "habibi2@gmail.com",
-    "phone": "085743840940",
+    "phone": "0851234567890",
     "password": "habibi"
   },
   {
@@ -22,5 +22,11 @@
     "email": "mantappu12@gmail.com",
     "phone": "085123456789",
     "password": "tidaktau"
+  },
+  {
+    "name": "Budi Santoso",
+    "email": "budi@example.com",
+    "phone": "081234567890",
+    "password": "rahasia123"
   }
 ]
